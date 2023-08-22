@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend-container
+        image: tkpaps/back-end
+        env:
+        - name: MONGO_URI
+          value: mongodb+srv://thomaskpappas:8xieuuLjy7jmlGEc@cluster0.yk1ahpq.mongodb.net/?retryWrites=true&w=majority
+        ports:
+        - containerPort: 3000
+
